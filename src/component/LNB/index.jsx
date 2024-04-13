@@ -5,7 +5,7 @@ const LNBStyled = styled.div`
   display: block;
   border-right: 1px solid black;
   width: 10%;
-  height: 85vh;
+  height: 100vh;
   flex-direction: column;
   background-color: #4ba5ca;
   cursor: default;

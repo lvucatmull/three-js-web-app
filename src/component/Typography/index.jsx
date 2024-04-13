@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import styles from "style/style.module.scss";
 
 const TypographyStyled = styled.p`
   border-radius: 4px;
@@ -7,18 +8,19 @@ const TypographyStyled = styled.p`
   font-weight: 400;
   font-size: 18px;
   cursor: normal;
-  ${(props) =>
-    props.$center &&
-    css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `}
-  ${(props) =>
-    props.$bold &&
-    css`
-      font-weight: 900;
-    `};
+  font-family: ${(props) => props.$font ?? "none"}
+    ${(props) =>
+      props.$center &&
+      css`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `}
+    ${(props) =>
+      props.$bold &&
+      css`
+        font-weight: 900;
+      `};
   ${(props) =>
     props.$primary &&
     css`
@@ -73,14 +75,14 @@ const Typography = ({
 }) => {
   return (
     <TypographyStyled
-      center={center}
-      bold={bold}
-      p1={p1}
-      p2={p2}
-      lnb={lnb}
-      primary={primary}
-      white={white}
-      loading={loading}
+      $center={center}
+      $bold={bold}
+      $p1={p1}
+      $p2={p2}
+      $lnb={lnb}
+      $primary={primary}
+      $white={white}
+      $loading={loading}
     >
       {children}
     </TypographyStyled>

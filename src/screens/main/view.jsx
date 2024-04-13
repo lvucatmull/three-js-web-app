@@ -1,4 +1,4 @@
-import DefaultButton from "component/DefaultButton";
+import DefaultButton from "component/Buttons/DefaultButton";
 import LNB from "component/LNB";
 import Typography from "component/Typography";
 import React from "react";
@@ -6,9 +6,14 @@ import Gallery from "screens/gallery";
 import { ContentBlock, Contents } from "style/page/common";
 import { Body } from "style/page/common";
 import baseLogo from "images/3d-vector-logo.png";
-// import styles from "style/style.module.scss";
+import LinkButton from "component/LinkButton";
 
-const View = ({ sceneNum = null, handleClickScene }) => {
+const View = ({
+  renderType = null,
+  sceneNum = null,
+  handleClickType,
+  handleClickScene,
+}) => {
   console.log("[RENDER] MainPage");
   return (
     <>
@@ -16,74 +21,91 @@ const View = ({ sceneNum = null, handleClickScene }) => {
         style={{
           background: "#5568af",
           display: "flex",
-          gap: "100px",
+          gap: "50px",
         }}
       >
-        {/* <picture>
-            <source
-              media="(max-width:767px)"
-              width="100"
-              height="55"
-              srcset="images/3d-logo.webp"
-              type="image/webp"
-            />
-          </picture> */}
         <img src={baseLogo} alt="" width="100" height="55" />
-        {/* <DefaultButton>
+        <LinkButton>
           <Typography p2 white>
-            Frontend
+            경력
           </Typography>
-        </DefaultButton>
-        <DefaultButton>
-          <Typography p2>Frontend</Typography>
-        </DefaultButton>
-        <DefaultButton>
-          <Typography p2 white>
-            Frontend
-          </Typography>
-        </DefaultButton> */}
+        </LinkButton>
+        <Typography p2 white>
+          포트폴리오
+        </Typography>
       </nav>
 
       <Body>
         <LNB>
-          <Typography> Scenes</Typography>
+          <Typography> Scenes </Typography>
         </LNB>
         <Contents>
           <ContentBlock>
             <DefaultButton
-              $clicked={sceneNum === 1}
-              value={1}
-              onClick={handleClickScene}
+              $clicked={renderType === "react-three"}
+              value={"react-three"}
+              onClick={handleClickType}
             >
-              {/* <button 
-              className={styles.btnMain}
-              value={1}
-              onClick={handleClickScene}
-            > */}
-              {/* <p>Three.js</p> */}
+              <Typography p2 white>
+                react-three
+              </Typography>
+            </DefaultButton>
+            <DefaultButton
+              $clicked={renderType === "three"}
+              value={"three"}
+              onClick={handleClickType}
+            >
               <Typography p2 white>
                 Three.js
               </Typography>
-              {/* </button> */}
             </DefaultButton>
             <DefaultButton
-              $clicked={sceneNum === 2}
-              value={2}
-              onClick={handleClickScene}
+              $clicked={renderType === "webgl"}
+              value={"webgl"}
+              onClick={handleClickType}
             >
-              {/* <button
-              className={styles.btnPrimary}
-              value={2}
-              onClick={handleClickScene}
-            > */}
-              {/* <p>WebGL</p> */}
               <Typography p2 white>
                 WebGL
               </Typography>
             </DefaultButton>
-            {/* </button> */}
           </ContentBlock>
-          <ContentBlock></ContentBlock>
+
+          {renderType === "react-three" && (
+            <ContentBlock>
+              <DefaultButton
+                $clicked={sceneNum === 1}
+                value={1}
+                onClick={handleClickScene}
+              >
+                <Typography p2 white>
+                  ThreeBody
+                </Typography>
+              </DefaultButton>
+            </ContentBlock>
+          )}
+          {renderType === "three" && (
+            <ContentBlock>
+              <DefaultButton
+                $clicked={sceneNum === 2}
+                value={2}
+                onClick={handleClickScene}
+              >
+                <Typography p2 white>
+                  Sponza
+                </Typography>
+              </DefaultButton>
+              <DefaultButton
+                $clicked={sceneNum === 3}
+                value={3}
+                onClick={handleClickScene}
+              >
+                <Typography p2 white>
+                  Particles
+                </Typography>
+              </DefaultButton>
+            </ContentBlock>
+          )}
+
           <ContentBlock>
             <Gallery sceneNum={sceneNum} />
           </ContentBlock>

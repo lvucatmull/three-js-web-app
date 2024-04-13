@@ -2,7 +2,21 @@ import React, { useCallback, useState } from "react";
 import View from "./view";
 
 const MainPage = () => {
+  const [renderType, setRenderType] = useState(null);
   const [sceneNum, setSceneNum] = useState(-1);
+
+  const handleClickType = useCallback(
+    (event) => {
+      if (event.currentTarget.value) {
+        const val = event.currentTarget.value;
+        setRenderType((prev) => {
+          return prev === val ? null : val;
+        });
+      }
+      event.stopPropagation();
+    },
+    [setSceneNum]
+  );
 
   const handleClickScene = useCallback(
     (event) => {
@@ -17,7 +31,14 @@ const MainPage = () => {
     [setSceneNum]
   );
 
-  return <View sceneNum={sceneNum} handleClickScene={handleClickScene} />;
+  return (
+    <View
+      renderType={renderType}
+      sceneNum={sceneNum}
+      handleClickType={handleClickType}
+      handleClickScene={handleClickScene}
+    />
+  );
 };
 
 export default MainPage;
