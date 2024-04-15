@@ -1,6 +1,5 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import styles from "style/style.module.scss";
 
 const TypographyStyled = styled.p`
   border-radius: 4px;

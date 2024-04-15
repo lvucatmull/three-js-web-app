@@ -2,7 +2,7 @@ import React from "react";
 import DefaultButton from "component/Buttons/DefaultButton";
 import Typography from "component/Typography";
 import { useNavigate } from "react-router";
-import { ContentBlock, Contents, Main } from "style/page/common";
+import { ContentBlock, Contents, Main } from "style/design/common";
 import SponzaScene from "component/3DScenes/Sponza";
 import { OrbitControls } from "@react-three/drei";
 

@@ -3,10 +3,10 @@ import LNB from "component/LNB";
 import Typography from "component/Typography";
 import React from "react";
 import Gallery from "screens/gallery";
-import { ContentBlock, Contents } from "style/page/common";
-import { Body } from "style/page/common";
+import { ContentBlock, Contents } from "style/design/common";
+import { Body } from "style/design/common";
 import baseLogo from "images/3d-vector-logo.png";
-import LinkButton from "component/LinkButton";
+import styles from "style/screen/main.scss";
 
 const View = ({
   renderType = null,
@@ -17,22 +17,16 @@ const View = ({
   console.log("[RENDER] MainPage");
   return (
     <>
-      <nav
-        style={{
-          background: "#5568af",
-          display: "flex",
-          gap: "50px",
-        }}
-      >
+      <nav className={styles.navHeader}>
         <img src={baseLogo} alt="" width="100" height="55" />
-        <LinkButton>
-          <Typography p2 white>
-            경력
-          </Typography>
-        </LinkButton>
-        <Typography p2 white>
-          포트폴리오
-        </Typography>
+        <ul>
+          <li>
+            <a href="/Introduction">About Me</a>
+          </li>
+          <li>
+            <a href="/Introduction">Portfolio</a>
+          </li>
+        </ul>
       </nav>
 
       <Body>
