@@ -1,12 +1,12 @@
-import DefaultButton from "component/Buttons/DefaultButton";
-import LNB from "component/LNB";
-import Typography from "component/Typography";
-import React from "react";
-import Gallery from "screens/gallery";
-import { ContentBlock, Contents } from "style/design/common";
-import { Body } from "style/design/common";
-import baseLogo from "images/3d-vector-logo.png";
-import styles from "style/screen/main.scss";
+import DefaultButton from 'component/Buttons/DefaultButton';
+import LNB from 'component/LNB';
+import Typography from 'component/Typography';
+import React from 'react';
+import Gallery from 'screens/gallery';
+import { ContentBlock, Contents } from 'style/design/common';
+import { Body } from 'style/design/common';
+import baseLogo from 'images/3d-vector-logo.png';
+import styles from 'style/style.module.scss';
 
 const View = ({
   renderType = null,
@@ -14,11 +14,11 @@ const View = ({
   handleClickType,
   handleClickScene,
 }) => {
-  console.log("[RENDER] MainPage");
+  console.log('[RENDER] MainPage');
   return (
-    <>
-      <nav className={styles.navHeader}>
-        <img src={baseLogo} alt="" width="100" height="55" />
+    <div className={styles.mainPage}>
+      <div className={styles.mainHeader}>
+        <img src={baseLogo} alt="" className={styles.mainLogoImage} />
         <ul>
           <li>
             <a href="/Introduction">About Me</a>
@@ -27,17 +27,19 @@ const View = ({
             <a href="/Introduction">Portfolio</a>
           </li>
         </ul>
-      </nav>
+      </div>
 
-      <Body>
-        <LNB>
-          <Typography> Scenes </Typography>
-        </LNB>
-        <Contents>
-          <ContentBlock>
+      <div className={styles.mainBody}>
+        <div className={styles.lnb}>
+          <Typography p2 white>
+            Scenes
+          </Typography>
+        </div>
+        <div className={styles.contents}>
+          <div className={styles.contentsBlock}>
             <DefaultButton
-              $clicked={renderType === "react-three"}
-              value={"react-three"}
+              $clicked={renderType === 'react-three'}
+              value={'react-three'}
               onClick={handleClickType}
             >
               <Typography p2 white>
@@ -45,8 +47,8 @@ const View = ({
               </Typography>
             </DefaultButton>
             <DefaultButton
-              $clicked={renderType === "three"}
-              value={"three"}
+              $clicked={renderType === 'three'}
+              value={'three'}
               onClick={handleClickType}
             >
               <Typography p2 white>
@@ -54,18 +56,18 @@ const View = ({
               </Typography>
             </DefaultButton>
             <DefaultButton
-              $clicked={renderType === "webgl"}
-              value={"webgl"}
+              $clicked={renderType === 'webgl'}
+              value={'webgl'}
               onClick={handleClickType}
             >
               <Typography p2 white>
                 WebGL
               </Typography>
             </DefaultButton>
-          </ContentBlock>
+          </div>
 
-          {renderType === "react-three" && (
-            <ContentBlock>
+          {renderType === 'react-three' && (
+            <div className={styles.contentsBlock}>
               <DefaultButton
                 $clicked={sceneNum === 1}
                 value={1}
@@ -75,10 +77,10 @@ const View = ({
                   ThreeBody
                 </Typography>
               </DefaultButton>
-            </ContentBlock>
+            </div>
           )}
-          {renderType === "three" && (
-            <ContentBlock>
+          {renderType === 'three' && (
+            <div className={styles.contentsBlock}>
               <DefaultButton
                 $clicked={sceneNum === 2}
                 value={2}
@@ -97,15 +99,15 @@ const View = ({
                   Particles
                 </Typography>
               </DefaultButton>
-            </ContentBlock>
+            </div>
           )}
 
-          <ContentBlock>
+          <div className={styles.contentsBlock}>
             <Gallery sceneNum={sceneNum} />
-          </ContentBlock>
-        </Contents>
-      </Body>
-    </>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

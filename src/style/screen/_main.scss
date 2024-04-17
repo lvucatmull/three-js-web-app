@@ -1,0 +1,87 @@
+// @use "../design/font";
+
+.mainPage {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100vh;
+}
+
+.mainHeader {
+  display: flex;
+  flex-direction: row !important;
+  height: 8vh;
+  padding: 20px;
+  background-color: #5568af;
+  align-items: center;
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    li {
+      margin-right: 30px; /* 각 아이템 간 간격 추가 */
+      a {
+        color: darkgrey;
+
+        &:hover {
+          color: rebeccapurple;
+        }
+
+        &:active {
+          color: rebeccapurple;
+        }
+      }
+    }
+  }
+}
+
+.mainLogoImage {
+  width: 80px;
+  height: 55px;
+}
+
+.mainBody {
+  display: flex;
+  min-width: 600px;
+  min-height: 300px;
+  height: 85vh;
+  background-color: white;
+  flex-direction: row;
+}
+
+.lnb {
+  display: block;
+  border-right: 1px solid black;
+  width: 10vw;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #4ba5ca;
+  cursor: default;
+
+  & p {
+    text-align: center;
+  }
+
+  & ul {
+    list-style-type: none;
+  }
+  & ul li {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  & ul li a {
+    text-decoration: none;
+  }
+}
+
+.contents {
+  width: 90%;
+  height: 100%;
+  gap: 1em;
+}
+
+.contentsBlock {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+  gap: 10px;
+}

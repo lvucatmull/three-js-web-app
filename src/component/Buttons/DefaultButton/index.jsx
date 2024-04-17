@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 // background: ${(props) =>
 //   props.$clicked ? "#BF4F74" : "hsl(209, 58%, 55%) !important"};
@@ -16,22 +16,26 @@ const DefaultButtonStyled = styled.button`
   justify-content: center;
   align-items: center;
   box-shadow: 1px 4px 0 #fc894d;
-  background: ${(props) =>
+  background: ${props =>
     props.$clicked
-      ? "hsl(104, 58%, 55%) !important"
-      : "hsl(209, 58%, 55%) !important"};
+      ? 'hsl(104, 58%, 55%) !important'
+      : 'hsl(209, 58%, 55%) !important'};
 
-  box-shadow: ${(props) =>
+  box-shadow: ${props =>
     props.$clicked
-      ? "box-shadow: 1px 1px 0 #fc894d"
-      : "box-shadow: 1px 4px 0 #fc894d"};
+      ? 'box-shadow: 1px 1px 0 #fc894d'
+      : 'box-shadow: 1px 4px 0 #fc894d'};
+
+  &:hover {
+    background-color: red;
+  }
 
   &:active {
     text-color: #0000;
     box-shadow: 1px 1px 0 #fc894d !important;
   }
 
-  ${(props) =>
+  ${props =>
     props.$primary &&
     css`
       background: hsl(209, 58%, 55%) !important;

@@ -1,9 +1,9 @@
-import React from "react";
-import "./App.css";
-import MainPage from "screens/main";
-import { Route, Routes } from "react-router";
-import ThreeOrbit from "component/3DScenes/ThreeOrbit";
-import SponzaScene from "component/3DScenes/Sponza";
+import React from 'react';
+import './App.css';
+import MainPage from 'screens/main';
+import { Route, Routes } from 'react-router';
+import ThreeOrbit from 'scenes/ThreeOrbit';
+import SponzaScene from 'scenes/SponzaScene';
 
 function App() {
   return (
