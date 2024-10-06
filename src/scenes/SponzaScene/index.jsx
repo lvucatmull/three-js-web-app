@@ -1,17 +1,25 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import * as THREE from 'three';
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
-import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader';
-import Typography from 'component/Typography';
 import Description from 'component/Description';
+import Loading from 'component/Loading';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader';
 
 const SponzaScene = () => {
+  const [rate, setRate] = useState('0');
+  const [loadedState, setLoadedState] = useState(false);
+
   const mountRef = useRef(null);
 
   const BillBoardDescription = useCallback(() => {
-    const originX = mountRef.current?.getBoundingClientRect().left;
-    const originY = mountRef.current?.getBoundingClientRect().top;
+    // const originX = mountRef.current?.getBoundingClientRect()?.left;
+    // const originY = mountRef.current?.getBoundingClientRect()?.top;
+    const originX = 0;
+    const originY = 0;
 
     console.log('[Description] originX : ', originX);
     console.log('[Description] originY : ', originY);
@@ -33,6 +41,8 @@ const SponzaScene = () => {
     console.log('[bounding rect] right : ', rect.right);
     console.log('[bounding rect] bottom : ', rect.bottom);
 
+    
+
     const camera = new THREE.PerspectiveCamera(
       45,
       mountRef.current.clientWidth / mountRef.current.clientHeight,
@@ -48,49 +58,50 @@ const SponzaScene = () => {
     mountRef.current.appendChild(renderer.domElement);
 
     var sponza_object = undefined;
-    var mtlLoader = new MTLLoader();
-    // THREE.DefaultLoadingManager.onStart = function (
-    //   url,
-    //   itemsLoaded,
-    //   itemsTotal,
-    // ) {
-    //   console.log(
-    //     'Started loading file: ' +
-    //       url +
-    //       '.\nLoaded ' +
-    //       itemsLoaded +
-    //       ' of ' +
-    //       itemsTotal +
-    //       ' files.',
-    //   );
-    // };
+    THREE.DefaultLoadingManager.onStart = function (
+      url,
+      itemsLoaded,
+      itemsTotal,
+    ) {
+      console.log(
+        'Started loading file: ' +
+          url +
+          '.\nLoaded ' +
+          itemsLoaded +
+          ' of ' +
+          itemsTotal +
+          ' files.',
+      );
+    };
 
-    // THREE.DefaultLoadingManager.onLoad = function () {
-    //   console.log('Loading Complete!');
-    // };
+    THREE.DefaultLoadingManager.onLoad = function () {
+      console.log('Loading Complete!');
+      setLoadedState(true);
+    };
 
-    // THREE.DefaultLoadingManager.onProgress = function (
-    //   url,
-    //   itemsLoaded,
-    //   itemsTotal,
-    // ) {
-    //   console.log(
-    //     'Loading file: ' +
-    //       url +
-    //       '.\nLoaded ' +
-    //       itemsLoaded +
-    //       ' of ' +
-    //       itemsTotal +
-    //       ' files.',
-    //   );
-    // };
+    THREE.DefaultLoadingManager.onProgress = function (
+      url,
+      itemsLoaded,
+      itemsTotal,
+    ) {
+      console.log(
+        'Loading file: ' +
+          url +
+          '.\nLoaded ' +
+          itemsLoaded +
+          ' of ' +
+          itemsTotal +
+          ' files.',
+      );
+    };
 
-    // THREE.DefaultLoadingManager.onError = function (url) {
-    //   console.log('There was an error loading ' + url);
-    // };
+    THREE.DefaultLoadingManager.onError = function (url) {
+      console.log('There was an error loading ' + url);
+    };
+    // var mtlLoader = new MTLLoader();
     // mtlLoader.load('OBJ/sponza/sponza.mtl', function (materials) {
     //   console.log('sponza mtl loaded');
-    //   materials.preload();
+    //   materials.preload(); 
     //   var objLoader = new OBJLoader();
     //   objLoader.setMaterials(materials);
     //   objLoader.load('OBJ/sponza/sponza.obj', function (object) {
@@ -113,14 +124,17 @@ const SponzaScene = () => {
       },
     );
 
-    const cubeGeometry = new THREE.BoxGeometry();
-    const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    scene.add(cube);
+    // const cubeGeometry = new THREE.BoxGeometry();
+    // const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    // const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    // scene.add(cube);
 
     // White directional light at half intensity shining from the top.
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    scene.add(directionalLight);
+    const pointLight = new THREE.PointLight(0xff0000, 0.7);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(pointLight);
+    scene.add(ambientLight);
 
     // 애니메이션 루프
     const animate = function () {
@@ -139,9 +153,9 @@ const SponzaScene = () => {
   }, []);
 
   return (
-    <div ref={mountRef} style={{ width: '800px', height: '600px' }}>
-      <BillBoardDescription />
-    </div>
+      <div ref={mountRef} style={{ width: '800px', height: '600px' }}>
+        {loadedState ? <BillBoardDescription /> : <Loading />}
+      </div>
   );
 };
 

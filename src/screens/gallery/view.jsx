@@ -1,8 +1,7 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
-import SponzaScene from 'scenes/SponzaScene';
 import { OrbitControls } from '@react-three/drei';
+import { useNavigate } from 'react-router';
 import BoxRotation from 'scenes/BoxRotation';
+import SponzaScene from 'scenes/SponzaScene';
 
 const View = ({ sceneNum }) => {
   console.log('[Gallery] scene number : ', sceneNum);

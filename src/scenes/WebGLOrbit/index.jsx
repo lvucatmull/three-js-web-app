@@ -5,6 +5,10 @@ const WebGLContext = ({ width, height, ...props }) => {
 
   const [gl, setGL] = useState();
 
+  const setCanvasRef = (canvasRef) => {
+    this.ref = canvasRef;
+  }
+
   React.useLayoutEffect(() => {
     const canvas = canvasRef.current;
     setGL(
@@ -26,8 +30,9 @@ const WebGLContext = ({ width, height, ...props }) => {
   gl.deleteShader(fragmentShader);
 
   return (
+    // <View setCanvasRef={setCanvasRef} width height props />
     <canvas
-      ref={canvasRef}
+      ref={setCanvasRef}
       width={width}
       height={height}
       style={{
@@ -38,3 +43,5 @@ const WebGLContext = ({ width, height, ...props }) => {
     ></canvas>
   );
 };
+
+export default WebGLContext;
