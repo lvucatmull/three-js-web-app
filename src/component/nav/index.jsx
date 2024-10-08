@@ -1,7 +1,6 @@
-import React from 'react';
 import Typography from 'component/Typography';
-import styles from 'style/style.module.scss';
 import { NameLogoVector } from 'images';
+import styles from 'style/style.module.scss';
 
 const NavHeader = ({ selected, setSelected }) => {
   return (
@@ -13,7 +12,7 @@ const NavHeader = ({ selected, setSelected }) => {
       <img src={NameLogoVector} alt="" className={styles.navLogo} />
       <ul className={styles.navBar}>
         <li>
-          <a href="/main">
+          <a href="/resume">
             <Typography p2 white>
               About Me
             </Typography>
