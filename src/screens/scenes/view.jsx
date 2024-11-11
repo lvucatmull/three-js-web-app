@@ -1,10 +1,8 @@
 import DefaultButton from 'component/Buttons/DefaultButton';
 import Typography from 'component/Typography';
-import React from 'react';
-import Gallery from 'screens/gallery';
-import { MainLogoVector } from 'images';
-import styles from 'style/style.module.scss';
 import NavHeader from 'component/nav';
+import Gallery from 'screens/gallery';
+import styles from 'style/style.module.scss';
 
 const View = ({
   renderType = null,
@@ -80,6 +78,29 @@ const View = ({
               >
                 <Typography p2 white>
                   Particles
+                </Typography>
+              </DefaultButton>
+            </div>
+          )}
+
+          {renderType === 'webgl' && (
+            <div className={styles.contentsBlock}>
+              <DefaultButton
+                $clicked={sceneNum === 4}
+                value={4}
+                onClick={handleClickScene}
+              >
+                <Typography p2 white>
+                  WebGL Scene 1
+                </Typography>
+              </DefaultButton>
+              <DefaultButton
+                $clicked={sceneNum === 5}
+                value={5}
+                onClick={handleClickScene}
+              >
+                <Typography p2 white>
+                  WebGL Scene 2
                 </Typography>
               </DefaultButton>
             </div>

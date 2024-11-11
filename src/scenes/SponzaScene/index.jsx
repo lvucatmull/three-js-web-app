@@ -41,15 +41,6 @@ const SponzaScene = () => {
     console.log('[bounding rect] right : ', rect.right);
     console.log('[bounding rect] bottom : ', rect.bottom);
 
-    
-
-    const camera = new THREE.PerspectiveCamera(
-      45,
-      mountRef.current.clientWidth / mountRef.current.clientHeight,
-      0.25,
-      20,
-    );
-
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(
       mountRef.current.clientWidth,
@@ -124,26 +115,29 @@ const SponzaScene = () => {
       },
     );
 
-    // const cubeGeometry = new THREE.BoxGeometry();
-    // const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    // const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    // scene.add(cube);
-
     // White directional light at half intensity shining from the top.
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
     const pointLight = new THREE.PointLight(0xff0000, 0.7);
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-    scene.add(pointLight);
+    scene.add(directionalLight);
     scene.add(ambientLight);
+
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      mountRef.current.clientWidth / mountRef.current.clientHeight,
+      0.25,
+      20,
+    );
 
     // 애니메이션 루프
     const animate = function () {
-      requestAnimationFrame(animate);
-
+            
       renderer.render(scene, camera);
+
+      window.requestAnimationFrame(animate)
     };
 
-    animate();
+    window.requestAnimationFrame(animate);
 
     // 컴포넌트 언마운트 시 정리
     return () => {

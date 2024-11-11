@@ -1,4 +1,4 @@
-const { forwardRef } = require("react")
+
 
 const View = ({
     setCanvasRef,
