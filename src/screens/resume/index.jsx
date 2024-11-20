@@ -10,10 +10,9 @@ const ResumePage = () => {
   const handleSelected = selection => {
     setSelected(selection);
   };
-
-  let answer = 0;
   
-  return <View selected={selected} handleSelected={handleSelected} answer={answer} />;
+  
+  return <View selected={selected} handleSelected={handleSelected} />;
 };
 
 export default ResumePage;

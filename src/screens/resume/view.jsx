@@ -1,8 +1,9 @@
 import NavHeader from 'component/nav';
 import styles from 'style/style.module.scss';
+import './style.scss';
 
 //Main Page
-const View = ({ selected, handleSelected, answer }) => {
+const View = ({ selected, handleSelected }) => {
   console.log('[RENDER] MainPage');
 
   return (
@@ -10,20 +11,8 @@ const View = ({ selected, handleSelected, answer }) => {
       <NavHeader selected={selected} handleSelected={handleSelected} />
       <div className={styles.body}>
         <div className={styles.contents}>
-          <div className={styles.contentsBlock}>
-            <span className={styles.btnSelection}>
-              <p style={{fontSize: 15}}> Answer is ${answer} </p>
-            </span>
-            <span className={styles.btnSelection}>
-              <p style={{fontSize: 15}}> Answer is ${answer} </p>
-            </span>
-            <span className={styles.btnSelection}>
-              <p style={{fontSize: 15}}> Answer is ${answer} </p>
-            </span>
-            <span className={styles.btnSelection}>
-              <p style={{fontSize: 15}}> Answer is ${answer} </p>
-            </span>
-            
+          <div className={styles.contentsBlock}> 
+            <h1>RESUME</h1>
           </div>
         </div>
       </div>
