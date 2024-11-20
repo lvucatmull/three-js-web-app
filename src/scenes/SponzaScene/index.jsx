@@ -131,7 +131,7 @@ const SponzaScene = () => {
 
     // 애니메이션 루프
     const animate = function () {
-            
+      
       renderer.render(scene, camera);
 
       window.requestAnimationFrame(animate)
