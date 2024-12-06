@@ -1,4 +1,4 @@
-# Portfolio Website
+# Playground Project
 
 React와 WebGL, Three.js를 활용한 포트폴리오 웹사이트입니다.
 
@@ -6,7 +6,7 @@ React와 WebGL, Three.js를 활용한 포트폴리오 웹사이트입니다.
 
 ### Home
 - 메인 페이지
-- 포트폴리오 소개 및 전체 구성 안내
+- Playground 소개 및 전체 구성 안내
 
 ### About Me 
 - 자기소개
@@ -34,14 +34,8 @@ React와 WebGL, Three.js를 활용한 포트폴리오 웹사이트입니다.
 ## 🛠 Tech Stack
 
 - Frontend: React
-- Graphics: WebGL
-- Styling: [사용하는 스타일링 도구]
-- Deploy: [배포 플랫폼]
-
-## 🔗 Links
-
-- Live Demo: [URL]
-- GitHub Repository: [URL]
+- Graphics: WebGL, Three.js
+- Styling: TailwindCSS
 
 ## 📝 License
 

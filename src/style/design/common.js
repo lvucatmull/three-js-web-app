@@ -103,3 +103,28 @@ export const Footer = styled.div`
   padding: 10px;
   text-align: center;
 `;
+
+export const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  border-radius: 0.3rem;
+  box-shadow: 2px 1px 1px black;
+`;
+
+export const CardHeader = styled.div`
+  justify-content: center;
+  text-align: center;
+  border-bottom: 1px solid;
+  font-weight: 400;
+  font-size: medium;
+  color: black;
+`;
+
+export const CardContent = styled.div`
+  width: 150px;
+  height: 200px;
+  color: black;
+  font-size: small;
+  background-color: brown;
+`;

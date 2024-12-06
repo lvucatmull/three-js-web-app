@@ -38,11 +38,12 @@ const WebGLContext = ({ width, height, ...props }) => {
   {
       fragColor = vec4(1.0, 0.0, 0.0, 1.0);
   }`;
-
-  const program = gl.createProgram();
   
-  // const gl = canvas.getContext('webgl2');\
+  // const gl = canvas.getContext('webgl2');
+
+  let program = null;
   function initGL() {
+    program = gl.createProgram();
     const vertexShader = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertexShader, vertexShaderSource);
     gl.compileShader(vertexShader);
@@ -75,8 +76,10 @@ const WebGLContext = ({ width, height, ...props }) => {
     window.requestAnimationFrame(anime);
   }
 
-  initGL();
-  window.requestAnimationFrame(anime);
+  if(gl) {
+    initGL();
+    window.requestAnimationFrame(anime);
+  }
 
   return (
     <canvas
