@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 
-const useDebounce = (callback, value, delay) => {
+const useDebounce = (callback: () => void, value: any, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
@@ -11,7 +12,7 @@ const useDebounce = (callback, value, delay) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [value]);
+  }, [callback, delay, value]);
 
   return debouncedValue;
 };
