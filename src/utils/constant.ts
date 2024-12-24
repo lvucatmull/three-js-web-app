@@ -1,0 +1,1 @@
+export const FETCH_BLOCK_SIZE = 6;

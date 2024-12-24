@@ -1,29 +1,26 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
-function useIntersectionObserver(options : {}) {
-  const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef(null);
+export default function useIntersectionObserver(
+  callback: () => void,
+  options: IntersectionObserverInit
+) {
+  const observer = useRef(
+    new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          callback();
+        }
+      });
+    }, options)
+  );
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const [entry] = entries;
-      setIsVisible(entry.isIntersecting);
-    }, options);
+  const observe = (element: HTMLElement) => {
+    observer.current.observe(element);
+  };
 
-    const currentElement = elementRef.current;
+  const unobserve = (element: HTMLElement) => {
+    observer.current.unobserve(element);
+  };
 
-    if (currentElement) {
-      observer.observe(currentElement);
-    }
-
-    return () => {
-      if (currentElement) {
-        observer.unobserve(currentElement);
-      }
-    };
-  }, [options]);
-
-  return [elementRef, isVisible];
+  return [observe, unobserve];
 }
-
-export default useIntersectionObserver;

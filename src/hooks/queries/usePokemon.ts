@@ -1,15 +1,15 @@
 import { QueryClient, useQuery } from '@tanstack/react-query';
 import { initAxios } from '../../utils/fetch';
 import queryKeys from '../../utils/queryKeys';
-import { PageInfoType, SortInfoType } from '../../utils/types/commonType';
+import { TPageInfo, TSortInfo } from '../../utils/types/common';
 import { LogServiceType } from '../../utils/types/logType';
 
 const pokemonAxios = initAxios(LogServiceType.POKEMON);
 
 export function getPokemonQueryObject(
   queryClient: QueryClient,
-  pageInfo: PageInfoType,
-  sortInfo: SortInfoType
+  pageInfo: TPageInfo,
+  sortInfo: TSortInfo
 ) {
   const { page } = pageInfo;
 
@@ -17,9 +17,8 @@ export function getPokemonQueryObject(
   const limit = page ? 8 * page + 1 : 100;
 
   const getPokeList = () => {
-    // return fetch('http://pokeapi.co/api/v2/pokemon?limit=100&offset=0');
     return pokemonAxios.get(
-      'http://pokeapi.co/api/v2/pokemon?limit=100&offset=0',
+      `http://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -27,6 +26,7 @@ export function getPokemonQueryObject(
       }
     );
   };
+
   const fetchPosts = async () => {
     try {
       const response = await getPokeList();
@@ -39,9 +39,9 @@ export function getPokemonQueryObject(
   return {
     queryHash: 'getPokemonQueryObject',
     queryKey: [queryKeys.POKEMON_LIST, page],
-    queryFn: () => fetchPosts(),
-    refetchIntervalInBackground: false,
-    refetchOnWindowFocus: false,
+    queryFn: fetchPosts,
+    // refetchIntervalInBackground: false,
+    // refetchOnWindowFocus: false,
     refetchOnMount: true,
     refetchOnReconnect: true,
     placeholderData: () => {
@@ -52,14 +52,18 @@ export function getPokemonQueryObject(
         `%c [Debug Fetch USEQUERY] onSuccess getPokemonQueryObject ${data}`,
         'background: #ff0ff0; color: #000000; font-size:15px'
       );
+      return data;
     },
   };
 }
 
 const usePokemonQuery = (
   queryClient: QueryClient,
-  pageInfo: PageInfoType,
-  sortInfo: SortInfoType
-) => useQuery(getPokemonQueryObject(queryClient, pageInfo, sortInfo));
+  pageInfo: TPageInfo,
+  sortInfo: TSortInfo
+) => {
+  console.log('usePokemonQuery');
+  return useQuery(getPokemonQueryObject(queryClient, pageInfo, sortInfo));
+};
 
 export default usePokemonQuery;
