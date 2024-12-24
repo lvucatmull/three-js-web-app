@@ -28,6 +28,8 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
 
+const dotenv = require('dotenv');
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
@@ -90,6 +92,11 @@ const hasJsxRuntime = (() => {
 module.exports = function (webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
+
+  dotenv.config();
+
+  // Access NODE_ENV from process.env
+  const nodeEnv = process.env.NODE_ENV || 'development'; // Default to 'development' if not set
 
   // Variable used for enabling profiling in Production
   // passed into alias object. Uses a flag if passed into the build command
