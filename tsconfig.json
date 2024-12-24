@@ -5,7 +5,12 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true
   },
-  "include": ["src"]
+  "include": ["src", "global.d.ts"]
 }
