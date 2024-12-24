@@ -2,7 +2,7 @@ import Typography from 'component/Typography';
 import { Rocket } from 'images';
 import styles from 'style/style.module.scss';
 
-const NavHeader = ({ selected, setSelected }) => {
+const NavHeader = (selected: any, setSelected: () => void) => {
   return (
     // <div className={styles.nav}>
     <nav className={styles.nav}>
@@ -17,14 +17,14 @@ const NavHeader = ({ selected, setSelected }) => {
             <Typography p2 white>
               About Me
             </Typography>
-          </a>  
+          </a>
         </li>
         <li>
           <a href="/playground">
             <Typography p2 white>
               Playground
             </Typography>
-          </a>  
+          </a>
         </li>
         <li>
           <a href="/portfolio">

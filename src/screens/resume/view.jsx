@@ -3,7 +3,7 @@ import styles from 'style/style.module.scss';
 import './style.scss';
 
 //Main Page
-const View = ({ selected, handleSelected }) => {
+const View = (selected, handleSelected) => {
   console.log('[RENDER] MainPage');
 
   return (
@@ -11,7 +11,7 @@ const View = ({ selected, handleSelected }) => {
       <NavHeader selected={selected} handleSelected={handleSelected} />
       <div className={styles.body}>
         <div className={styles.contents}>
-          <div className={styles.contentsBlock}> 
+          <div className={styles.contentsBlock}>
             <h1>RESUME</h1>
           </div>
         </div>

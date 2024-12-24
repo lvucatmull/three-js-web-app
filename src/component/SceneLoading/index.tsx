@@ -1,6 +1,10 @@
-import Typography from 'component/Typography';
+import Typography from '../Typography';
 
-const Loading = ({ rate }) => {
+interface SceneLoadinProps {
+  rate: number | undefined;
+}
+
+const SceneLoading = ({ rate }: SceneLoadinProps) => {
   return (
     <div>
       <label htmlFor="scene">
@@ -11,4 +15,4 @@ const Loading = ({ rate }) => {
   );
 };
 
-export default Loading;
+export default SceneLoading;
