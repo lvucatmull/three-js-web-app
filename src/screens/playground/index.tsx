@@ -7,7 +7,7 @@ import { LogServiceType, TPokemonDataList } from 'utils/types';
 import View from './view';
 
 //PokemonDex Page
-const PokemonDex = () => {
+const Playground = () => {
   const [selected, setSelected] = useState(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
@@ -85,9 +85,10 @@ const PokemonDex = () => {
           handleSelected={handleSelected}
           posts={fetchedData}
           loadMoreRef={loadMoreRef}
+          isLoading={isLoading}
         />
     </div>
   );
 };
 
-export default PokemonDex;
+export default Playground;

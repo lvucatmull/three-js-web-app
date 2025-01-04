@@ -1,3 +1,4 @@
+import PokemonDex from 'component/PokemonDex';
 import NavHeader from 'component/nav';
 import { Ref, forwardRef } from 'react';
 import { Card, CardContent, CardHeader } from 'style/design/common';
@@ -9,12 +10,13 @@ interface ViewProps {
   selected: any;
   handleSelected: (selection: any) => void;
   posts: Array<TPokemonData>;
-  loadMoreRef: Ref<HTMLDivElement>
+  loadMoreRef: Ref<HTMLDivElement>;
+  isLoading: boolean;
 }
 
 //Main Page
 const View = forwardRef(function (
-  { selected, handleSelected, posts, loadMoreRef}: ViewProps,
+  { selected, handleSelected, posts, loadMoreRef, isLoading}: ViewProps,
   ref: Ref<HTMLDivElement> | undefined
 ) {
   console.log('> [VIEW] playground ', posts?.length);
@@ -29,12 +31,12 @@ const View = forwardRef(function (
               {posts &&
                 posts.map(post => (
                   <div className="item">
-                    <Card>
+                    {isLoading ? <span> Loading ... </span> : <Card>
                       <CardHeader>{post?.name}</CardHeader>
                       <CardContent>
-                        <p>{post.url}</p>
+                        <PokemonDex name={post?.name?.toString()} url={post?.url?.toString()} />
                       </CardContent>
-                    </Card>
+                    </Card>}
                   </div>
                 ))}
               <div ref={loadMoreRef} />
